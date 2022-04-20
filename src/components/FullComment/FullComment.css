@@ -1,0 +1,15 @@
+.FullComment {
+    background-color: #e0e7ff;
+    color: #4338ca;
+    border-radius: 5px;
+    width: 600px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+h3{
+    display: inline;
+}

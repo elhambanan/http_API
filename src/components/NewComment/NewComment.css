@@ -1,0 +1,30 @@
+.newComment {
+    background-color: #e0e7ff;
+    color: #4338ca;
+    border-radius: 5px;
+    width: 600px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.newComment div {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.newComment div label{
+    margin-right: 10px;
+}
+.newComment button {
+    outline: none;
+    border: none;
+    background-color: #8b5cf6;
+    color: #fff;
+    font-size: large;
+    border-radius: 5px;
+    padding: 10px 5px;
+    margin-top: 30px;
+}
