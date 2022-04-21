@@ -1,0 +1,14 @@
+import FullComment from "./pages/FullComment/FullComment";
+import HomePage from "./pages/HomePage";
+import NewComment from "./pages/NewComment/NewComment";
+import NotFound from "./pages/NotFound";
+
+
+const routes = [
+    {path: "/", element:<HomePage/>},
+    {path: "/new-comment", element:<NewComment />},
+    {path: "/comment/:id", element:<FullComment />}, 
+    {path: "*", element:<NotFound/>},
+
+]
+ export default routes;

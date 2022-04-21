@@ -2,12 +2,16 @@ import { useState } from "react";
 import "./NewComment.css"
 import { addNewComment } from "../../services/addNewCommnetServices";
 import { getAllComments } from "../../services/getAllCommentsServices";
+import { useNavigate } from "react-router-dom";
+
 const NewComment = ({setComments, setError}) => {
     const [comment, setComment] = useState({
         name:"",
         email:"",
         body:"",
     });
+    const navigate = useNavigate();
+
     const changeHandler = (e) => {
         setComment({...comment, [e.target.name]: e.target.value}); 
     };
@@ -22,8 +26,9 @@ const NewComment = ({setComments, setError}) => {
     const postCommentHandler = async() => {
         try {
             await addNewComment({...comment, postId:987})
-            const {data} = await getAllComments();
-            setComments(data)
+            navigate("/");
+            // const {data} = await getAllComments();
+            // setComments(data)
         } catch (error) {
         
         }

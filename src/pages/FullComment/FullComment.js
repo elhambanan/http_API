@@ -1,11 +1,22 @@
 import { useEffect, useState } from "react";
+import { useParams , useNavigate} from "react-router-dom";
 import { deleteComment } from "../../services/deleteCommentService";
-import { getAllComments } from "../../services/getAllCommentsServices";
 import { getOneComment } from "../../services/getOneCommentServices";
+
 import "./FullComment.css"
 
-const FullComment = ({commentId, setComments, setSelectedId}) => {
-    const [comment, setComment] = useState(null);
+const FullComment = ({setComments, setSelectedId}) => {
+    const {id} = useParams();
+    const navigate = useNavigate();
+    
+    const commentId = id
+
+
+    console.log(navigate)
+
+    
+
+        const [comment, setComment] = useState(null);
 
     // get comment => id => async await => useEffect => recieve full  commnet
     useEffect(() => {
@@ -26,10 +37,11 @@ const FullComment = ({commentId, setComments, setSelectedId}) => {
     const deleteHandler = async() => {
        try {
            await deleteComment(commentId)
-            const {data} = await getAllComments();
-            setComments(data);
+           navigate('/');
+            // const {data} = await getAllComments();
+            // setComments(data);
+            // setSelectedId(null);
             setComment(null);
-            setSelectedId(null);
 
        } catch (error) {}
     }

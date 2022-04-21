@@ -2,14 +2,13 @@
     background-color: #e0e7ff;
     color: #4338ca;
     border-radius: 5px;
-    width: 600px;
+    width: 90%;
     height: 300px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    margin: 20px 0;
-}
-h3{
-    display: inline;
+    margin: 10px auto;
+    padding: 20px 15px;
+    
 }

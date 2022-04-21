@@ -1,12 +1,12 @@
-import Comment from "../../components/Commnet/Comments";
-import FullComment from "../../components/FullComment/FullComment";
-import NewComment from "../../components/NewComment/NewComment";
+import Comment from "./Comment/Comment";
 import {useEffect, useState} from "react";
 import { toast } from 'react-toastify';
-import "./discussion.css";
+import "./commetsList.css"
 import { getAllComments } from "../../services/getAllCommentsServices";
+import { Link } from "react-router-dom";
 
-const Discussion = () => {
+const CommentList
+ = () => {
     const[comments, setComments] = useState(null);
     const[selectedId, setSelectedId] = useState(null);
     const[error, setError] = useState(false);
@@ -52,13 +52,14 @@ const Discussion = () => {
 
        if(comments && !error) {
         renderValue =( comments.map((c)=> 
+                    <Link to={`/comment/${c.id}`} key={c.id} >
                         <Comment 
-                            key={c.id} 
                             name={c.name} 
                             email={c.email} 
                             body={c.body}
-                            onClick={() =>selectCommentHandler(c.id)}
+                            // onClick={() =>selectCommentHandler(c.id)}
                         />
+                    </Link>
                      ) ); 
        }
        return renderValue;
@@ -66,20 +67,12 @@ const Discussion = () => {
 
 
     return ( 
-        <main className="discussion">
-            <section>
+    
+            <section className="commentList">
                 {renderCommnets()}
             </section>
-            <section>
-                <FullComment commentId = {selectedId}
-                            setComments={setComments}
-                            setSelectedId={setSelectedId} />
-            </section>
-            <section>
-                <NewComment setComments={setComments} setError={setError}/>
-            </section>
-        </main>
+           
     );
 }
  
-export default Discussion;
+export default CommentList;
