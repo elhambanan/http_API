@@ -1,8 +1,9 @@
-import CommentList from "../components/Comments/CommentsList";
+
+import MainComp from "../components/MainComp";
 
 const HomePage = () => {
     return ( 
-        <CommentList />
+        <MainComp />
      );
 }
  

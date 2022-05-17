@@ -1,13 +1,11 @@
-import FullComment from "./pages/FullComment/FullComment";
 import HomePage from "./pages/HomePage";
-import NewComment from "./pages/NewComment/NewComment";
 import NotFound from "./pages/NotFound";
+import FullData from "./pages/FullDataPage";
 
 
 const routes = [
     {path: "/", element:<HomePage/>},
-    {path: "/new-comment", element:<NewComment />},
-    {path: "/comment/:id", element:<FullComment />}, 
+    {path: "/:id", element:<FullData />}, 
     {path: "*", element:<NotFound/>},
 
 ]
