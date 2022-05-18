@@ -2,8 +2,10 @@ import { NavLink, useParams } from "react-router-dom";
 import { Link} from "react-router-dom";
 
 const items = [
-  {name: "Home", to:"/"},
-  {name: "New Comment", to:"/new-comment"},
+  {name: "character", to:"/"},
+  {name: "location", to:"/"},
+  {name: "episode", to:"/"}
+
 ]
 
 const Navigation = () => {

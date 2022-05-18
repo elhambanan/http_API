@@ -1,7 +1,7 @@
 
-const OneComp = ({name, id, status,onClick}) => {
+const Character = ({name, id, status,onClick}) => {
     return ( 
-        <div className="oneComp" onClick={onClick}>
+        <div className="character" onClick={onClick}>
             <p>id: {id}</p>
             <p>name: {name}</p>
             <p>status: {status}</p>
@@ -9,4 +9,4 @@ const OneComp = ({name, id, status,onClick}) => {
      );
 }
  
-export default OneComp;
+export default Character;

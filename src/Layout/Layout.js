@@ -2,6 +2,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import routes from "../routes.js"
 import { Route, Routes} from "react-router-dom";
+import SearchBar from "../components/SearchComp";
 
 
 const Layout = ({Children}) => {
@@ -14,8 +15,8 @@ const Layout = ({Children}) => {
                   {routes.map((route, index) =>  (
                     <Route {...route} key={index}/>
                   ))}
-            </Routes>   
-            {/* <Footer /> */}
+            </Routes>  
+            <Footer />
 
         </>
      );

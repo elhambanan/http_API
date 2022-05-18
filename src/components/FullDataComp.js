@@ -1,36 +1,37 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { getOneCharacter } from "../services/getOneCharacterServices";
 
 const FullDataComp = () => {
     const params = useParams();
-    const dataId = params.id;
-    console.log(dataId)
+    const characterId = params.id;
     const [data, setData] = useState(null);
 
     useEffect(() =>{
-        if(dataId) {
-            axios.get(`https://rickandmortyapi.com/api/character/${dataId}`)
-             .then((res) => {
-                 console.log(res.data, "dataBug")
-                 setData(res.data)
-                })
+        if(characterId) {
+            getOneCharacter(characterId)
+             .then((res) => {setData(res.data)})
              .catch((err) => console.log(err)) }  
-    },[dataId])
+    },[characterId])
+   
 
     // dataId ?
     // data ?
     
     let dataDetail = <p>Please select a data !</p>
 
-    if(dataId) dataDetail = <p>loading ...</p>
+    if(characterId) dataDetail = <p>loading ...</p>
 
     if(data) {
         dataDetail = (
             <div>
                 FullData
                 <p>id : {data.id}</p>
-                <p>episode : {data.name}</p>
+               { data.episode.map((m) => (
+                   <Link to="https://rickandmortyapi.com/api/episode/1">
+                    <p>{m}</p>
+                   </Link>
+               ))}
                 <p>created :{data.created}</p>
             </div>
         )
