@@ -1,20 +1,44 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import OneComp from "./OneComp";
+import PaginateComp from "./PaginateComp";
 
 const MainComp = () => {
     const [listedData, setListedData] = useState(null);
+    const [pageInfo, setPageInfo] = useState(null);
+
+
+    const queryString = require('query-string');
+    let location = useLocation();
+    let navigate = useNavigate();
+    
+    const query = queryString.parse(location.search)
+    console.log(location.search, query)
+  
+    
 
     useEffect(()=>{
-        axios.get("https://rickandmortyapi.com/api/character")
+        axios.get(`https://rickandmortyapi.com/api/character/${location.search}`)
              .then((res) => { 
                 setListedData(res.data.results)
             })
              .catch((err) => console.log(err))
     },[]);
+
+    // useEffect(() => {
+    //     axios.get(`https://rickandmortyapi.com/api/character/${location.search}`)
+    //          .then((res) => {
+    //              setPageInfo(res.data.info)
+    //              console.log(res.data.info)})
+    //          .catch((err) => console.log(err))
+    // },[]);
+
     const selectDataHandler = (id) => {
         console.log(id)
+    }
+    const selectPageHandler = (page) => {
+        console.log("paged", page)
     }
     return ( 
         <div className="mainComp">
@@ -31,6 +55,7 @@ const MainComp = () => {
                 )
                 : <p>Data Loading...</p>
             }
+            <PaginateComp pageHandler={selectPageHandler()} />
         </div>
      );
 }

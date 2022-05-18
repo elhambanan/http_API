@@ -16,5 +16,14 @@
   border-radius: 5px;
   padding: 0.5rem;
 }
+.paginateComp {
+  background-color: red;
+  display: flex;
+
+}
+.paginateComp button {
+ margin-left: 1rem;
+ padding: 0.5rem;
+}
 
 

@@ -1,7 +1,9 @@
+import PaginateComp from "./PaginateComp";
+
 const Footer = () => {
     return ( 
         <footer>
-            <h3>this is footer</h3>
+            <PaginateComp />
         </footer>
     );
 }
