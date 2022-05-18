@@ -15,7 +15,7 @@ const Layout = ({Children}) => {
                     <Route {...route} key={index}/>
                   ))}
             </Routes>   
-            <Footer />
+            {/* <Footer /> */}
 
         </>
      );

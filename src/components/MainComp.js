@@ -14,7 +14,7 @@ const MainComp = () => {
     let navigate = useNavigate();
     
     const query = queryString.parse(location.search)
-    console.log(location.search, query)
+    console.log(location, query)
   
     
 
@@ -32,31 +32,37 @@ const MainComp = () => {
     //              setPageInfo(res.data.info)
     //              console.log(res.data.info)})
     //          .catch((err) => console.log(err))
-    // },[]);
+    // },[location.search]);
 
     const selectDataHandler = (id) => {
         console.log(id)
     }
     const selectPageHandler = (page) => {
         console.log("paged", page)
+        axios.get(`https://rickandmortyapi.com/api/character/${page}`)
+             .then((res) => setListedData(res.data.results)
+             .catch((err) => console.log(err))
+             )
     }
     return ( 
-        <div className="mainComp">
-            {listedData 
-                ? listedData.map((data) => 
-                  <Link to={`/${data.id}`} key={data.id}>
-                      <OneComp 
-                        id={data.id}
-                        name={data.name}
-                        status={data.status}
-                        onClick={() => selectDataHandler(data.id)}
-                    />
-                  </Link>
-                )
-                : <p>Data Loading...</p>
-            }
-            <PaginateComp pageHandler={selectPageHandler()} />
-        </div>
+        <>
+            <div className="mainComp">
+                {listedData 
+                    ? listedData.map((data) => 
+                    <Link to={`/${data.id}`} key={data.id}>
+                        <OneComp 
+                            id={data.id}
+                            name={data.name}
+                            status={data.status}
+                            onClick={() => selectDataHandler(data.id)}
+                        />
+                    </Link>
+                    )
+                    : <p>Data Loading...</p>
+                }
+            </div>
+            <PaginateComp pageHandler={selectPageHandler} />
+        </>
      );
 }
  
