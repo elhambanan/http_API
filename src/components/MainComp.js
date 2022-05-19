@@ -9,6 +9,7 @@ import { getAllCharacters} from "../services/getAllCharactersServices";
 
 const MainComp = () => {
     const [listedData, setListedData] = useState(null);
+    const [pageInfo, setPageInfo] = useState(null);
     const [error, setError] = useState(false);
 
 
@@ -18,33 +19,36 @@ const MainComp = () => {
 
     const query = queryString.parse(location.search)
     console.log(location, query)
+    console.log(pageInfo, listedData)
+
   
-    useEffect(()=>{
-        // axios.get(`https://rickandmortyapi.com/api/character/${location.search}`)
-        //      .then((res) => { 
-        //         setListedData(res.data.results)
-        //     })
-        //      .catch((err) => console.log(err))
+    // useEffect(()=>{
+    //     axios.get(`https://rickandmortyapi.com/api/character/${location.search}`)
+    //          .then((res) => { 
+    //             setListedData(res.data.results)
+    //         })
+    //          .catch((err) => console.log(err))
+    // },[]);
+    
+    useEffect(()=> {
         getCharacters();
-    },[]);
+    },[])
+    useEffect(()=> {
+        getCharacters();
+    },[pageNum])
+
     async function getCharacters() {
         try {
             const response = await getAllCharacters(pageNum);
             setListedData(response.data.results)
+            setPageInfo(response.data.info)
         } catch (error) {
             console.log(error)
             setError(true)
         }
     }
-
-    const selectDataHandler = (id) => {
-        console.log(id)
-    }
-    const selectPageHandler = (page) => {
-        axios.get(`https://rickandmortyapi.com/api/character/${page}`)
-             .then((res) => setListedData(res.data.results)
-             .catch((err) => console.log(err))
-             )
+    const selectPageHandler = (pageNum) => {
+        
     }
     const filterHandler = (e) => {
         if (e.target.value === ""){
@@ -86,14 +90,34 @@ const MainComp = () => {
                             id={data.id}
                             name={data.name}
                             status={data.status}
-                            onClick={() => selectDataHandler(data.id)}
                         />
                     </Link>
                     )
                     : <p>Data Loading...</p>
                 }
             </div>
-            <PaginateComp pageHandler={selectPageHandler} />
+            {pageInfo 
+                ? (<div className="paginateComp">
+                    <Link to={`/${pageInfo.prev.slice(32)}`}>
+                        <button onClick={() => selectPageHandler()}>
+                            {pageInfo.prev.slice(32)}
+                        </button>
+                    </Link>
+                    <Link to={`/${pageInfo.prev.slice(32)}`}>
+                        <button onClick={() => selectPageHandler()}>
+                            {pageNum}
+                        </button>
+                    </Link>
+                    <Link to={`/${pageInfo.next.slice(32)}`}>
+                        <button onClick={() => selectPageHandler()}>
+                            {pageInfo.next.slice(32)}
+                        </button>
+                    </Link>
+
+                </div>)
+                : (<p>Page Loading</p>)
+            } 
+
         </>
      );
 }

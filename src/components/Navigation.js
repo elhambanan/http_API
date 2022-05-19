@@ -1,15 +1,15 @@
-import { NavLink, useParams } from "react-router-dom";
-import { Link} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const items = [
-  {name: "character", to:"/"},
-  {name: "location", to:"/"},
-  {name: "episode", to:"/"}
+  {name: "character", to:"/character"},
+  {name: "location", to:"/location"},
+  {name: "episode", to:"/episode"}
 
 ]
 
+
+
 const Navigation = () => {
-    const params = useParams();
     return ( 
       <header>
         <nav>

@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import axios from "axios";
+import { Link, useLocation } from "react-router-dom";
 
 const items = [
     {name : "page-1", to: "/?page=1"},

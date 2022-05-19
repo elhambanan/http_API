@@ -1,9 +1,10 @@
 import PaginateComp from "./PaginateComp";
 
-const Footer = () => {
+const Footer = ({clickBtn}) => {
     return ( 
         <footer>
-    
+          
+
         </footer>
     );
 }
